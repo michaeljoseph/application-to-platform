@@ -138,14 +138,16 @@ michaeljoseph         @github
                       @twitter
 ]
 ???
+
 ---
-![github](https://github.com/michaeljoseph/application-to-platform))
----
-## Overview
+class: center, inverse
+
+
+## this talk is about
 ![image]()
 
 .large[
-# transformation
+transformation
 ]
 ???
 This is the story, all about [Yola](https://yola.com) engineers transforming
@@ -168,16 +170,18 @@ a website building application into a robust, distributed platform
 This talk mostly concerns itself with the python API services layer, since i’m the Services Team Lead.
 There are a number of other interesting talks that I have yet to convince some Yola colleagues to prepare
 ---
+template: inverse
+
 .left-column[
 # overview
 ]
 .right-column[
 
-- patterns
+patterns
 
-- organisational attributes
+organisational attributes
 
-- roadmap
+roadmap
 ]
 ???
 I shall attempt to:
@@ -186,7 +190,7 @@ I shall attempt to:
 - share the medium term roadmap for our system.
 ---
 # History
-![image](https://raw.github.com/michaeljoseph/application-to-platform/first/images/2007-beta-architecture.png)
+![image](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2007-beta-architecture.png)
 ???
 In the beginning, we had an application. It was called The Sitebuilder. And it was good. Well, pretty good.
 We had an application that lived on two servers in 2007 (along with a php website and wordpress blog and database).
@@ -233,10 +237,9 @@ our architect created lovely architecture changelogs and when he left us for Fac
 Someone please tweet @nbm and @vhata that I name dropped him
 A successor was not named. Then the fun started :)
 Timeline graph of synthasite / yola architecture: # instances; # deployable artifacts
----
 --- 
 # Before And After
-![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/first/images/2009-platform-2.9.png)
+![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
 ???
 Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
 Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
@@ -244,10 +247,10 @@ Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scala
 Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
 SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
 SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
-SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the first company revenue stream.
+SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
 SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
 SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
-SynthaSite Platform 2.0 — June 2008: First step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
+SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
 SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
 
 end 2009: paymentservice, checkoutservice, domainservice
@@ -256,7 +259,7 @@ php website
 wordpress blog
 
 oct 2013: We have around 30 deployable applications, service apis, front-ends and automation/testing repositories.
-
+---
 ## applications and installables
 - frontends: sb is pretty much the same application, we’ve added helper services around it to absorb the load, we now have a logged in user management site: MyYola and a CMS for brochure-ware (the main website)
 
@@ -272,16 +275,21 @@ oct 2013: We have around 30 deployable applications, service apis, front-ends an
 template: inverse
 layout: false
 class: center
+.left-column[
+patterns
+]
 
-# patterns
-.right-column[
+## new services first
+## switch client applications [standard demands based service clients]
+## cleanup
 
+works for hardware too
+
+???
 - build out and release new service calls independent of consumuing clients
 
 - refactor apps
   - re-use standard python service clients to reduce development time
-
-- switch clients
 
 - rm old implementation / cleanup / decommission
 
@@ -291,17 +299,92 @@ class: center
    - provision
    - test
    - load balance in, load balance out
-]
-???
-some notes
 ---
-# evolving services with service-clients
+evolving services with service-clients
+```python
+import logging
+import yosites
 
+from hashlib import md5
+
+from demands import HTTPServiceClient, HTTPServiceError
+from yoconfig import get_config
+
+log = logging.getLogger(__name__)
+
+
+class BaseService(HTTPServiceClient):
+    """
+    Base yosites service
+    
+    Handles client identification and POST/PUT Content-Type override
+    """
+    def __init__(self, config_name):
+        self.config = get_config(config_name)
+        self.config['client_name'] = yosites.__name__
+        self.config['client_version'] = yosites.__version__
+        self.config['send_as_json'] = True
+
+        super(BaseService, self).__init__(**self.config)
+
+
+class SiteService(BaseService):
+    """
+    Provides methods which communicate with Yola's SiteService::
+
+        siteservice = SiteService()
+        user_sites = siteservice.get_user_sites(user_id)
+    """
+    def __init__(self):
+        super(SiteService, self).__init__('siteservice')
+
+    def get_user_sites(self, user_id):
+        """
+        .. http:get:: /v2/users/(int:user_id)/sites/
+
+        Get user sites
+
+        **Example request**:
+
+        .. sourcecode:: http
+
+            GET /v2/users/123/sites/ HTTP/1.1
+            Host: example.com
+            Accept: application/json
+
+        **Example response**:
+
+        .. sourcecode:: http
+
+            HTTP/1.1 200 OK
+            Vary: Accept
+            Content-Type: application/json
+
+            [
+                'skus': ['10000200'],
+                'sku_10000200_name': ['foo.com'],
+            ]
+
+        :param user_id: yola user id of the purchaser
+        :throws: :class:`demands.HTTPServiceError`
+        :return: list of user sites
+        """
+        response = self.get('/v2/users/%s/sites/' % user_id, expected_response_codes=(404,))
+        return response.json() if response.is_ok else []
+
+    def create_user_site(self, user_id, site_data):
+        self.put('/users/%s/sites/' % user_id, data=site_data)
+
+    def delete_user_site(self, user_id, site_id):
+        self.delete('/users/%s/sites/%s/' % (user_id, site_id))
+```
+![image](https://docs.yola.net/yosites/#yosites.services.SiteService.get_user_sites)
+???
 - shittiest python code is (in only a few places, hopefully): python 2.6, django < 1.4, piston, sloppy testing practices, complicated code with production bug fixing barnacles that works
 
 - new apis: python 2.7, djrf, django
 - small api: flask
-- python service clients: [`demands`](https://github.com/yola/demands). <3 kennethreitz
+- python service clients: [`demands`](https://github.com/yola/demands). kennethreitz
 - new user facing app: django 1.5, cbvs, south, asset compression, front end dependency toolchain (lessc, bower, grunt)
 ---
 # engineering workflow
@@ -319,6 +402,9 @@ Many eyeballs make all the bugs shallower and there’s always a paper trail.
 
 [graph of deploys per day]
 we're no github, but we do alright
+
+---
+yola open source
 
 ---
 # lessons
@@ -375,6 +461,13 @@ A Markdown-formatted chunk of text is transformed into individual slides by Java
 Waiting for improvements to compound, almost at the singularity
 We're hiring :)
 ---
+# this talk and references
+
+![github](https://github.com/michaeljoseph/application-to-platform)
+yola
+demands
+
+---
 name: last-page
 template: inverse
 
@@ -384,6 +477,8 @@ template: inverse
 Slideshow created using [remark](http://github.com/gnab/remark).
 ???
 make some stuff up
+---
+# questions
 ---
     </textarea>
     <script src="http://gnab.github.com/remark/downloads/remark-0.5.5.min.js" type="text/javascript"></script>
