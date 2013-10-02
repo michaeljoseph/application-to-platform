@@ -1,259 +1,402 @@
+
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Application To Platform : http://za.pycon.org/talks/28/" />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Application To Platform</title>
+    <style type="text/css">
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+      @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+
+      body {
+        font-family: 'Droid Serif';
+        font-size: 30px;
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      h1 { font-size: 4em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        -moz-border-radius: 5px;
+        -web-border-radius: 5px;
+        background: #e7e8e2;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 2em;
+      }
+    </style>
   </head>
-
   <body>
+    <textarea id="source">
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Application To Platform
+.footnote[[How we used Python to scale Yola](https://github.com/michaeljoseph/application-to-platform)]
+---
+layout: false
+.large[
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/michaeljoseph/application-to-platform">View on GitHub</a>
+![avatar]
 
-          <h1 id="project_title">Application To Platform</h1>
-          <h2 id="project_tagline">http://za.pycon.org/talks/28/</h2>
+yola logo
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/michaeljoseph/application-to-platform/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/michaeljoseph/application-to-platform/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+michaeljoseph         @github
+                      @twitter
+]
+???
+---
+![github](https://github.com/michaeljoseph/application-to-platform))
+---
+## Overview
+![image]()
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="application-to-platform" class="anchor" href="#application-to-platform"><span class="octicon octicon-link"></span></a>Application To Platform</h1>
+.large[
+# transformation
+]
+???
+This is the story, all about [Yola](https://yola.com) engineers transforming
+a website building application into a robust, distributed platform
+(for hosting and building websites).
+---
+.left-column[
+## Other talks
+]
+.right-column[
 
-<hr><h2>
-<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+- yodeploy and yoconfigurator
 
-<p>[image]()
-???</p>
+- yola’s hosting platform
 
-<h2>
-<a name="this-is-the-story-of-how-yola-engineers-transformed-a-website-building-application-into-a-robust-distributed-platform-for-hosting-and-building-websites" class="anchor" href="#this-is-the-story-of-how-yola-engineers-transformed-a-website-building-application-into-a-robust-distributed-platform-for-hosting-and-building-websites"><span class="octicon octicon-link"></span></a>This is the story of how <a href="https://yola.com">Yola</a> engineers transformed a website building application into a robust, distributed platform (for hosting and building websites).</h2>
+- release automation and continuous deployment
 
-<h2>
-<a name="by" class="anchor" href="#by"><span class="octicon octicon-link"></span></a>By</h2>
+]
+???
+This talk mostly concerns itself with the python API services layer, since i’m the Services Team Lead.
+There are a number of other interesting talks that I have yet to convince some Yola colleagues to prepare
+---
+.left-column[
+# overview
+]
+.right-column[
 
-<p>decomposing and augmenting our services layer into multiple Python-driven API services</p>
+- patterns
 
-<p>in a series of small low-risk changes (which i’ll discuss in more detail)</p>
+- organisational attributes
 
-<p>we organically built out the service layer.</p>
-
-<hr><h2>
-<a name="other-talks" class="anchor" href="#other-talks"><span class="octicon octicon-link"></span></a>Other talks</h2>
-
-<ul>
-<li><p>yodeploy and yoconfigurator</p></li>
-<li><p>yola’s hosting platform</p></li>
-<li><p>release automation and continuous deployment</p></li>
-</ul><p>???
-This talk mostly concerns itself with the python API services layer, since i’m the Services Team Lead.</p>
-
-<h2>
-<a name="there-are-a-number-of-other-interesting-talks-that-i-have-yet-to-convince-some-yola-colleagues-to-prepare" class="anchor" href="#there-are-a-number-of-other-interesting-talks-that-i-have-yet-to-convince-some-yola-colleagues-to-prepare"><span class="octicon octicon-link"></span></a>There are a number of other interesting talks that I have yet to convince some Yola colleagues to prepare</h2>
-
-<h1>
-<a name="overview-1" class="anchor" href="#overview-1"><span class="octicon octicon-link"></span></a>overview</h1>
-
-<ul>
-<li><p>patterns</p></li>
-<li><p>organisational attributes</p></li>
-<li><p>roadmap</p></li>
-</ul><p>???
-I shall attempt to:</p>
-
-<ul>
-<li>extract and present some patterns that worked for us</li>
-<li>discuss the organisational flexibility and engineering workflow that enabled us to refactor the system architecture, and</li>
-</ul><h2>
-<a name="--share-the-medium-term-roadmap-for-our-system" class="anchor" href="#--share-the-medium-term-roadmap-for-our-system"><span class="octicon octicon-link"></span></a>- share the medium term roadmap for our system.</h2>
-
-<h1>
-<a name="history" class="anchor" href="#history"><span class="octicon octicon-link"></span></a>History</h1>
-
-<p><img src="2007-beta-architecture.png" alt="image">
+- roadmap
+]
+???
+I shall attempt to:
+- extract and present some patterns that worked for us
+- discuss the organisational flexibility and engineering workflow that enabled us to refactor the system architecture, and
+- share the medium term roadmap for our system.
+---
+# History
+![image](https://raw.github.com/michaeljoseph/application-to-platform/first/images/2007-beta-architecture.png)
 ???
 In the beginning, we had an application. It was called The Sitebuilder. And it was good. Well, pretty good.
 We had an application that lived on two servers in 2007 (along with a php website and wordpress blog and database).
 Except smart people :)
-<a href="https://github.com/nbm" class="user-mention">@nbm</a>: architecture goals, decided that soa was the way to go (it was also a buzzword back in the day, it  was a thing guys).</p>
+@nbm: architecture goals, decided that soa was the way to go (it was also a buzzword back in the day, it  was a thing guys).
+over the next 2 years we evolved a reasonably robust platform.
+>>
+One of the goals of architecture is to create a set of principles that inform decision-making around changes that affect architecture.
+These are not hard rules, they are a set of criteria to use to evaluate options available when a decision needs to be made. Each rule should be considered to be prefaced with "all else being equal".
+Simplicity is preferable to complexity
+Architecture, designs, and implementations that are simple have useful properties:
+They are easy to understand
+They are easy to modify
+They are easy to replace or rewrite
+Existing solutions are preferable to entirely new ones
+Use of mature existing solutions has benefits over creating new solutions:
+It generally takes less time to go from concept to production with an existing solution
+Existing solutions tend to be of higher quality than new solutions, at least for a period of time
+Third-party solutions tend to improve their features and quality over time without internal effort
+Existing solutions generally have better documentation and
+However, there are downsides that must be considered:
+It is generally harder to modify third-party solutions
+Existing solutions may not be simple, or may not serve the requirements effectively.
+Open Source solutions are preferable to proprietary ones
+For locally deployed code, open source solutions offer some benefits over proprietary ones.
+Code availability is often very useful to debug and write integration against
+Proprietary software licensing can inhibit the goals of elastic scaling, by requiring monitoring and/or restriction of application use on multiple, temporary, instances
+For externally managed services, this is less of a concern.
+Iterative improvements are preferable to large-scale changes
+Smaller changes are easier to understand, plan, execute, and evaluate the impact of.
+Components of the architecture should not require particular hardware or operating systems
+Keep the amount of state required by a component to a minimum
+Avoid single points of failure
+Where possible, work should be able to be performed by multiple instances of an application that are active at the same time. Ensuring that only a single instance of an application is running on a cluster is a hard problem, but it also assures a lack of scalability as well.
+Favor redundant distribution of resources over restoring from backups
+Keeping recent backups of 12TB of data on a daily basis is a hard exercise. Instead of having single instances of data as part of a large group of data that needs to be backed up entirely whether pieces have changed or not, a redundant distribution of resources obviates the need for backing up that data, and focusing backup tasks on only the groups of data that have changed is much more effective for both backing up, but also for the recovery process.
 
-<h2>
-<a name="over-the-next-2-years-we-evolved-a-reasonably-robust-platform" class="anchor" href="#over-the-next-2-years-we-evolved-a-reasonably-robust-platform"><span class="octicon octicon-link"></span></a>over the next 2 years we evolved a reasonably robust platform</h2>
-
-<h1>
-<a name="makeover" class="anchor" href="#makeover"><span class="octicon octicon-link"></span></a>Makeover</h1>
-
-<p><img src="yola-2007-2009-diff.png" alt="image"><img src="instances-artifacts-graph.png" alt="image">
+---
+# Makeover
+![image](yola-2007-2009-diff.png)
+![image](instances-artifacts-graph.png)
 ???
 our architect created lovely architecture changelogs and when he left us for Facebook (which is becoming a damn theme at yola these days).
-Someone please tweet <a href="https://github.com/nbm" class="user-mention">@nbm</a> and <a href="https://github.com/vhata" class="user-mention">@vhata</a> that I name dropped him
-A successor was not named. Then the fun started :)</p>
-
-<h2>
-<a name="timeline-graph-of-synthasite--yola-architecture--instances--deployable-artifacts" class="anchor" href="#timeline-graph-of-synthasite--yola-architecture--instances--deployable-artifacts"><span class="octicon octicon-link"></span></a>Timeline graph of synthasite / yola architecture: # instances; # deployable artifacts</h2>
-
-<hr><h1>
-<a name="before-and-after" class="anchor" href="#before-and-after"><span class="octicon octicon-link"></span></a>Before And After</h1>
-
-<p><img src="http://raw.github.com/michaeljoseph/pyconza2013/slide-4-before-after.jpg" alt="Alt text">
+Someone please tweet @nbm and @vhata that I name dropped him
+A successor was not named. Then the fun started :)
+Timeline graph of synthasite / yola architecture: # instances; # deployable artifacts
+---
+--- 
+# Before And After
+![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/first/images/2009-platform-2.9.png)
 ???
+Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
+Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
+Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
+Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
+SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
+SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
+SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the first company revenue stream.
+SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
+SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
+SynthaSite Platform 2.0 — June 2008: First step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
+SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
+
 end 2009: paymentservice, checkoutservice, domainservice
 sitebuilder
 php website
-wordpress blog</p>
+wordpress blog
 
-<p>oct 2013: We have around 30 deployable applications, service apis, front-ends and automation/testing repositories.</p>
+oct 2013: We have around 30 deployable applications, service apis, front-ends and automation/testing repositories.
 
-<h2>
-<a name="applications-and-installables" class="anchor" href="#applications-and-installables"><span class="octicon octicon-link"></span></a>applications and installables</h2>
+## applications and installables
+- frontends: sb is pretty much the same application, we’ve added helper services around it to absorb the load, we now have a logged in user management site: MyYola and a CMS for brochure-ware (the main website)
 
-<ul>
-<li><p>frontends: sb is pretty much the same application, we’ve added helper services around it to absorb the load, we now have a logged in user management site: MyYola and a CMS for brochure-ware (the main website)</p></li>
-<li>
-<p>storage: from single spofs to one level of database redundancy, with automatic backups
-(where are the Yola people in the audience? We should test some restores sometime guys?)</p>
+- storage: from single spofs to one level of database redundancy, with automatic backups
+(where are the Yola people in the audience? We should test some restores sometime guys?)
+  - s3, no more NFS
 
-<ul>
-<li>s3, no more NFS</li>
-</ul>
-</li>
-<li><p>pure services: userservice, , domainservice, michango, rankmonitor</p></li>
-<li><p>applications: myyola, checkoutservice, yolacom [+ apis]</p></li>
-</ul><hr><h1>
-<a name="patterns" class="anchor" href="#patterns"><span class="octicon octicon-link"></span></a>patterns</h1>
+- pure services: userservice, , domainservice, michango, rankmonitor
 
-<ul>
-<li><p>build out and release new service calls independent of consumuing clients</p></li>
-<li>
-<p>refactor apps</p>
+- applications: myyola, checkoutservice, yolacom [+ apis]
 
-<ul>
-<li>re-use standard python service clients to reduce development time</li>
-</ul>
-</li>
-<li><p>switch clients</p></li>
-<li><p>rm old implementation / cleanup / decommission</p></li>
-<li>
-<p>same deal for rotating hardware</p>
+---
+template: inverse
+layout: false
+class: center
 
-<ul>
-<li>spin up a fresh box</li>
-<li>provision</li>
-<li>test</li>
-<li>load balance in, load balance out
+# patterns
+.right-column[
+
+- build out and release new service calls independent of consumuing clients
+
+- refactor apps
+  - re-use standard python service clients to reduce development time
+
+- switch clients
+
+- rm old implementation / cleanup / decommission
+
+- same deal for rotating hardware
+
+   - spin up a fresh box
+   - provision
+   - test
+   - load balance in, load balance out
 ]
 ???
 some notes
---- 
-# evolving services with service-clients</li>
-</ul>
-</li>
-<li><p>shittiest python code is (in only a few places, hopefully): python 2.6, django &lt; 1.4, piston, sloppy testing practices, complicated code with production bug fixing barnacles that works</p></li>
-<li><p>new apis: python 2.7, djrf, django</p></li>
-<li><p>small api: flask</p></li>
-<li><p>python service clients: <a href="https://github.com/yola/demands"><code>demands</code></a>. &lt;3 kennethreitz</p></li>
-<li><p>new user facing app: django 1.5, cbvs, south, asset compression, front end dependency toolchain (lessc, bower, grunt)</p></li>
-</ul><hr><h1>
-<a name="organisational-enablers-engineering-workflow" class="anchor" href="#organisational-enablers-engineering-workflow"><span class="octicon octicon-link"></span></a>organisational enablers; engineering workflow</h1>
+---
+# evolving services with service-clients
 
-<p>Being careful not to over engineer in advance [abstraction astronaut] we delayed major technology decision making</p>
+- shittiest python code is (in only a few places, hopefully): python 2.6, django < 1.4, piston, sloppy testing practices, complicated code with production bug fixing barnacles that works
 
-<p>In hindsight it seems obvious: the decentralised, internet-based, just-in-time way of working that has risen to popularity in the wake of companies like github, facebook and valve.</p>
+- new apis: python 2.7, djrf, django
+- small api: flask
+- python service clients: [`demands`](https://github.com/yola/demands). <3 kennethreitz
+- new user facing app: django 1.5, cbvs, south, asset compression, front end dependency toolchain (lessc, bower, grunt)
+---
+# engineering workflow
 
-<p>A flat organisational structure and hiring smart people means that you don’t really need to worry about who does what and when, as long as there is work to be done and some degree of priorisation, smart engineers just get the job done.</p>
+Being careful not to over engineer in advance <abstraction astronaut> we delayed major technology decision making
 
-<p>-- decision making and meritocracies with a BDFL</p>
+In hindsight it seems obvious: the decentralised, internet-based, just-in-time way of working that has risen to popularity in the wake of companies like github, facebook and valve.
 
-<p>Github pull requests and code review have transformed the way the team works.
-Many eyeballs make all the bugs shallower and there’s always a paper trail.</p>
+A flat organisational structure and hiring smart people means that you don’t really need to worry about who does what and when, as long as there is work to be done and some degree of priorisation, smart engineers just get the job done.
 
-<p>[graph of deploys per day]
-we're no github, but we do alright</p>
+-- decision making and meritocracies with a BDFL
 
-<hr><h1>
-<a name="how-wed-approach-it-today" class="anchor" href="#how-wed-approach-it-today"><span class="octicon octicon-link"></span></a>how we’d approach it today</h1>
+Github pull requests and code review have transformed the way the team works.
+Many eyeballs make all the bugs shallower and there’s always a paper trail.
 
-<p>pretty much the way i just described it.
-[org + workflow]
-release early and often: keep the changes small and pointy, lowers the cognitive overhead of review, increased confidence in pushing out new code, small surface area of introduced bugs to inspect (they’re shallow anyway because we have many eyeballs)</p>
+[graph of deploys per day]
+we're no github, but we do alright
 
-<hr><h1>
-<a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>roadmap</h1>
+---
+# lessons
 
-<p>[succession]()</p>
+release early and often
+keep the changes small and pointy
+  lowers the cognitive overhead of review
+  increases confidence in pushing out new code
+  small surface area of introduced bugs to inspect 
+bugs are shallow anyway because we have many eyeballs
 
-<p>???</p>
+---
 
-<ul>
-<li>database succession</li>
-<li>feature flags and user segmenting, better dogfooding</li>
-</ul><hr><h2>
-<a name="roadmap-1" class="anchor" href="#roadmap-1"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+# roadmap
 
-<h3>
-<a name="monitoring" class="anchor" href="#monitoring"><span class="octicon octicon-link"></span></a>Monitoring</h3>
+![succession]()
 
-<p>[monitoring]()</p>
+???
+- database succession
+- feature flags and user segmenting, better dogfooding
 
-<p>???
+---
+template: inverse
+.left-column[
+  ## Roadmap
+  ### Monitoring
+]
+.right-column[
+![monitoring]()
+]
+???
     - monitoring: we use pingdom, graphite, munin and sentry
-    - stuff mainly just goes in there (unless there’s a problem. for the size of cluster we operate, these tools are generally sufficient)</p>
+    - stuff mainly just goes in there (unless there’s a problem. for the size of cluster we operate, these tools are generally sufficient)
+        - we need a monitoring dashboard (next juicy devops project)
 
-<h2>
-<a name="----------we-need-a-monitoring-dashboard-next-juicy-devops-project" class="anchor" href="#----------we-need-a-monitoring-dashboard-next-juicy-devops-project"><span class="octicon octicon-link"></span></a>        - we need a monitoring dashboard (next juicy devops project)</h2>
+---
+# roadmap: what was hard
+.left-column[
+  ## Roadmap
+### - Monitoring
+### - What was hard
+]
+.right-column[
+A Markdown-formatted chunk of text is transformed into individual slides by JavaScript running in the browser:
 
-<h1>
-<a name="roadmap-what-was-hard" class="anchor" href="#roadmap-what-was-hard"><span class="octicon octicon-link"></span></a>roadmap: what was hard</h1>
 
-<h2>
-<a name="roadmap-2" class="anchor" href="#roadmap-2"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+.pull-right[
 
-<h3>
-<a name="--monitoring" class="anchor" href="#--monitoring"><span class="octicon octicon-link"></span></a>- Monitoring</h3>
+- slow
 
-<h3>
-<a name="--what-was-hard" class="anchor" href="#--what-was-hard"><span class="octicon octicon-link"></span></a>- What was hard</h3>
+- boring
+]
+???
+Waiting for improvements to compound, almost at the singularity
+We're hiring :)
+---
+name: last-page
+template: inverse
 
-<ul>
-<li><p>slow</p></li>
-<li><p>boring</p></li>
-</ul><p>???</p>
+## summary
+![funny picture](about-to-summit.png)
 
-<h2>
-<a name="waiting-for-improvements-to-compound-almost-at-the-singularity" class="anchor" href="#waiting-for-improvements-to-compound-almost-at-the-singularity"><span class="octicon octicon-link"></span></a>Waiting for improvements to compound, almost at the singularity</h2>
-
-<h2>
-<a name="summary" class="anchor" href="#summary"><span class="octicon octicon-link"></span></a>summary</h2>
-
-<p><img src="about-to-summit.png" alt="funny picture"></p>
-
-<p>Slideshow created using <a href="http://github.com/gnab/remark">remark</a>.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Application To Platform maintained by <a href="https://github.com/michaeljoseph">michaeljoseph</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+Slideshow created using [remark](http://github.com/gnab/remark).
+???
+make some stuff up
+---
+    </textarea>
+    <script src="http://gnab.github.com/remark/downloads/remark-0.5.5.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var hljs = remark.highlighter.engine;
+    </script>
+    <script src="remark.language.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+          ratio: '16:9',
+          highlightStyle: 'monokai',
+          highlightLanguage: 'python'
+        }) ;
+    </script>
   </body>
 </html>
