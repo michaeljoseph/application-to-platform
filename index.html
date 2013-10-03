@@ -130,27 +130,25 @@ class: center, middle, inverse
 ---
 layout: false
 .large[
-
-![avatar]
-
-yola logo
-
-michaeljoseph         @github
-                      @twitter
+![avatar](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/github.png)
+![yola](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yola.png)
+michaeljoseph   @github     @twitter
 ]
----
-![github](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/github.png)
 ---
 class: center, inverse
 ## this talk is about
 .large[
-![transformation](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWlaKbO-cnNqOolhK275aMzg8KoFmHI-SgfgeFUUsz05PUR7uw)
+![transformation](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/transformers.png)
 ]
 ???
 .small[
 This is the story, all about [Yola](https://yola.com) engineers transforming
 a website building application into a robust, distributed platform
 (for hosting and building websites).
+]
+---
+.large[
+https://github.com/michaeljoseph/application-to-platform
 ]
 ---
 .left-column[
@@ -238,20 +236,28 @@ Where possible, work should be able to be performed by multiple instances of an 
 Favor redundant distribution of resources over restoring from backups
 Keeping recent backups of 12TB of data on a daily basis is a hard exercise. Instead of having single instances of data as part of a large group of data that needs to be backed up entirely whether pieces have changed or not, a redundant distribution of resources obviates the need for backing up that data, and focusing backup tasks on only the groups of data that have changed is much more effective for both backing up, but also for the recovery process.
 ---
-# 
+# architecture changelog 
 Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
-Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
-Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
-Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
-SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
-SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
-SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
-SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
-SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
-SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
-SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
-???
 
+Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
+
+Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
+
+Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
+
+SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
+
+SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
+
+SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
+
+SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
+
+SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
+
+SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
+
+SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
 --- 
 # Before And After
 ![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
@@ -280,6 +286,15 @@ php website
 wordpress blog
 
 oct 2013: We have around 30 deployable applications, service apis, front-ends and automation/testing repositories.
+---
+# lessons
+
+release early and often
+keep the changes small and pointy
+  lowers the cognitive overhead of review
+  increases confidence in pushing out new code
+  small surface area of introduced bugs to inspect 
+bugs are shallow anyway because we have many eyeballs
 ---
 ## standardise
 ### applications and installables
@@ -437,25 +452,19 @@ property-cachingd
 
 https://github.com/yola
 ---
-# lessons
-
-release early and often
-keep the changes small and pointy
-  lowers the cognitive overhead of review
-  increases confidence in pushing out new code
-  small surface area of introduced bugs to inspect 
-bugs are shallow anyway because we have many eyeballs
 
 ---
-
 # roadmap
 
-![succession]()
+- database succession
+
+- feature flags
+
+- modernise all the things
 
 ???
 - database succession
 - feature flags and user segmenting, better dogfooding
-
 ---
 template: inverse
 .left-column[
@@ -473,40 +482,28 @@ template: inverse
 ---
 # roadmap: what was hard
 .left-column[
-  ## Roadmap
-### - Monitoring
-### - What was hard
+  ## Roadmap: What was hard
 ]
-.right-column[
-A Markdown-formatted chunk of text is transformed into individual slides by JavaScript running in the browser:
-
-
-.pull-right[
 
 - slow
 
 - boring
+
+- singularity imminent
 ]
 ???
 Waiting for improvements to compound, almost at the singularity
 We're hiring :)
 ---
-# this talk and references
-
-![github](https://github.com/michaeljoseph/application-to-platform)
-yola
-demands
-
----
 name: last-page
 template: inverse
 
 ## summary
-![funny picture](about-to-summit.png)
 
 Slideshow created using [remark](http://github.com/gnab/remark).
 ???
-make some stuff up
+small steps
+org support
 ---
 # questions
 ---
