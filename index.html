@@ -233,27 +233,34 @@ However, there are downsides that must be considered:
 Avoid single points of failure
 ---
 # architecture changelog 
-Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
 
-Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
 
-Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
+SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
 
-Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
-
-SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
-
-SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
-
-SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
-
-SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
-
-SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
 
 SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
 
-SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
+SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
+
+SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
+---
+# architecture changelog
+
+Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
+
+Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
+
+Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
+
+Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
+---
+# architecture changelog
+
+SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
+
+SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
+
+SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
 --- 
 # Before And After
 ![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
@@ -404,12 +411,6 @@ class SiteService(BaseService):
         """
         response = self.get('/v2/users/%s/sites/' % user_id, expected_response_codes=(404,))
         return response.json() if response.is_ok else []
-
-    def create_user_site(self, user_id, site_data):
-        self.put('/users/%s/sites/' % user_id, data=site_data)
-
-    def delete_user_site(self, user_id, site_id):
-        self.delete('/users/%s/sites/%s/' % (user_id, site_id))
 ```
 ![image](https://docs.yola.net/yosites/#yosites.services.SiteService.get_user_sites)
 ???
