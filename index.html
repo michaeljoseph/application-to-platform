@@ -134,6 +134,11 @@ layout: false
 ![yola](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yola-logo.png)
 michaeljoseph   @github     @twitter
 ]
+???
+excuses
+- false pretences:  backup speaker
+- 4 day talk
+- crappy slides: squirrel (show remark / reveal)
 ---
 class: center, inverse
 ## this talk is about
@@ -186,8 +191,11 @@ roadmap
 ]
 ???
 I shall attempt to:
+
 - extract and present some patterns that worked for us
+
 - discuss the organisational flexibility and engineering workflow that enabled us to refactor the system architecture, and
+
 - share the medium term roadmap for our system.
 ---
 # History
@@ -232,11 +240,9 @@ However, there are downsides that must be considered:
 
 Avoid single points of failure
 ---
-# architecture changelog 
-
+## architecture changelog 
 
 SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
-
 
 SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
 
@@ -244,7 +250,15 @@ SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and 
 
 SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
 ---
-# architecture changelog
+## architecture changelog
+
+SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
+
+SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
+
+SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
+---
+## architecture changelog
 
 Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
 
@@ -254,49 +268,28 @@ Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates th
 
 Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
 ---
-# architecture changelog
-
-SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
-
-SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
-
-SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
---- 
-# Before And After
-![Alt text](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
+## Before And After
+![platform-2.9](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
 ???
 our architect created lovely architecture changelogs and when he left us for Facebook (which is becoming a damn theme at yola these days).
 Someone please tweet @nbm and @vhata that I name dropped him
 A successor was not named. Then the fun started :)
 Timeline graph of synthasite / yola architecture: # instances; # deployable artifacts
 
-???
-Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
-Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates the provision of purchase flows in a secure fashion (it, over SSL).
-Yola Platform 2.7 — May 2009: Adds the Resource Store, which facilitates scalable and highly-available storage of site resources.
-Yola Platform 2.6 — May 2009: Adds the ability to have multiple Site Building file servers, allowing horizontal scaling of Site Building storage and I/O.
-SynthaSite Platform 2.5 — December 2008: Adds the ability to have multiple hosting file servers, allowing horizontal scaling of hosting storage and I/O.
-SynthaSite Platform 2.4 — November 2008: Adds hosting web server load balancing, allowing horizontal scaling as well as high availability.
-SynthaSite Platform 2.3 — October 2008: Adds the domain service and the payment service, allowing for the gh-pages company revenue stream.
-SynthaSite Platform 2.2 — September 2008: Adds horizontal scalability to the Site Builder database tier, allowing additional Site Builder database servers to be added to improve capacity.
-SynthaSite Platform 2.1 — July 2008: Adds a dedicated hosting file system and database server, with drbd failover.
-SynthaSite Platform 2.0 — June 2008: gh-pages step in creating a more scalable and reliable platform, introducing load balancing and failover databases and filesystems to the Site Building cluster
-SynthaSite v2 beta — November 2007: The SynthaSite v2 beta went live.
-
-end 2009: paymentservice, checkoutservice, domainservice
-sitebuilder
-php website
-wordpress blog
-
 oct 2013: We have around 30 deployable applications, service apis, front-ends and automation/testing repositories.
 ---
 # lessons
 
 release early and often
+
 keep the changes small and pointy
+
   lowers the cognitive overhead of review
+
   increases confidence in pushing out new code
+
   small surface area of introduced bugs to inspect 
+
 bugs are shallow anyway because we have many eyeballs
 ---
 ## standardise
@@ -320,13 +313,13 @@ deployment / rollout patterns
 ]
 
 ## new services first
-## switch client applications [standard demands based service clients]
+## switch client applications using standard demands based service clients
 ## cleanup
 
 works for hardware too
 
 ???
-- build out and release new service calls independent of consumuing clients
+- build out and release new service calls independent of consuming clients
 
 - refactor apps
   - re-use standard python service clients to reduce development time
@@ -340,7 +333,9 @@ works for hardware too
    - test
    - load balance in, load balance out
 ---
-evolving services with service-clients
+##  evolving services with service-clients
+
+.small[
 ```python
 import logging
 import yosites
@@ -351,21 +346,6 @@ from demands import HTTPServiceClient, HTTPServiceError
 from yoconfig import get_config
 
 log = logging.getLogger(__name__)
-
-
-class BaseService(HTTPServiceClient):
-    """
-    Base yosites service
-    
-    Handles client identification and POST/PUT Content-Type override
-    """
-    def __init__(self, config_name):
-        self.config = get_config(config_name)
-        self.config['client_name'] = yosites.__name__
-        self.config['client_version'] = yosites.__version__
-        self.config['send_as_json'] = True
-
-        super(BaseService, self).__init__(**self.config)
 
 
 class SiteService(BaseService):
@@ -412,7 +392,10 @@ class SiteService(BaseService):
         response = self.get('/v2/users/%s/sites/' % user_id, expected_response_codes=(404,))
         return response.json() if response.is_ok else []
 ```
-![image](https://docs.yola.net/yosites/#yosites.services.SiteService.get_user_sites)
+]
+---
+## generated docs
+![yosites](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yosites.png))
 ???
 - shittiest python code is (in only a few places, hopefully): python 2.6, django < 1.4, piston, sloppy testing practices, complicated code with production bug fixing barnacles that works
 
