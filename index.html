@@ -131,14 +131,23 @@ class: center, middle, inverse
 layout: false
 .large[
 ![avatar](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/avatar.png)
-![yola](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yola-logo.png)
+
 michaeljoseph   @github     @twitter
+![yola](file:///Users/marijepierson/mj/application-to-platform/images/yola-logo.png)
 ]
 ???
-excuses
+.small[
+# excuses
+
 - false pretences:  backup speaker
+
 - 4 day talk
+
 - crappy slides: squirrel (show remark / reveal)
+
+- we're hiring, let me convince you / swimming the recruitment and hiring manager infested nerdpool during the break
+we have business cards
+]
 ---
 class: center, inverse
 ## this talk is about
@@ -201,12 +210,19 @@ I shall attempt to:
 # History
 ![image](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2007-beta-architecture.png)
 ???
+.small[
 In the beginning, we had an application. It was called The Sitebuilder. And it was good. Well, pretty good.
-We had an application that lived on two servers in 2007 (along with a php website and wordpress blog and database).
+
+We had an application that lived on two servers in 2007 (along with a php website and wordpress blog and database) and not much else.
 Except smart people :)
-@nbm: architecture goals, decided that soa was the way to go (it was also a buzzword back in the day, it  was a thing guys).
-over the next 2 years we evolved a reasonably robust platform.
+
+
+@vhata and devops: cheffing and automating all the things
+
+tell them on twitter that i'm @ name dropping...
+]
 ---
+class: inverse
 # architecture goals
 
 Simplicity is preferable to complexity
@@ -218,7 +234,12 @@ Open Source solutions are preferable to proprietary ones
 Avoid single points of failure
 
 ???
+.small[
+@nbm: architecture goals, decided that soa was the way to go (it was also a buzzword back in the day, it  was a thing guys).
+over the next 2 years we evolved a reasonably robust platform.
+
 solutioneering, speakers dinner
+
 architecture is a juggling act. balancing a series of tradeoffs
 
 Architecture, designs, and implementations that are simple have useful properties:
@@ -239,6 +260,7 @@ However, there are downsides that must be considered:
   Open Source solutions are preferable to proprietary ones
 
 Avoid single points of failure
+]
 ---
 ## architecture changelog 
 
@@ -268,10 +290,12 @@ Yola Platform 2.8 — June 2009: Adds the Checkout Service, which facilitates th
 
 Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
 ---
+template: inverse
 ## Before And After
 ![platform-2.9](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/2009-platform-2.9.png)
 ???
 our architect created lovely architecture changelogs and when he left us for Facebook (which is becoming a damn theme at yola these days).
+
 Someone please tweet @nbm and @vhata that I name dropped him
 A successor was not named. Then the fun started :)
 Timeline graph of synthasite / yola architecture: # instances; # deployable artifacts
