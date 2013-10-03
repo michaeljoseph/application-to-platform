@@ -130,8 +130,8 @@ class: center, middle, inverse
 ---
 layout: false
 .large[
-![avatar](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/github.png)
-![yola](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yola.png)
+![avatar](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/avatar.png)
+![yola](https://raw.github.com/michaeljoseph/application-to-platform/gh-pages/images/yola-logo.png)
 michaeljoseph   @github     @twitter
 ]
 ---
@@ -147,9 +147,11 @@ a website building application into a robust, distributed platform
 (for hosting and building websites).
 ]
 ---
-.large[
+# follow along at home
+
 https://github.com/michaeljoseph/application-to-platform
-]
+???
+If you're staring at your device while I'm talking I can pretend that you're looking at my presentation
 ---
 .left-column[
 ## Other talks
@@ -196,45 +198,39 @@ We had an application that lived on two servers in 2007 (along with a php websit
 Except smart people :)
 @nbm: architecture goals, decided that soa was the way to go (it was also a buzzword back in the day, it  was a thing guys).
 over the next 2 years we evolved a reasonably robust platform.
---
+---
 # architecture goals
 
 Simplicity is preferable to complexity
+
 Existing solutions are preferable to entirely new ones
+
 Open Source solutions are preferable to proprietary ones
+
+Avoid single points of failure
 
 ???
 solutioneering, speakers dinner
+architecture is a juggling act. balancing a series of tradeoffs
 
-One of the goals of architecture is to create a set of principles that inform decision-making around changes that affect architecture.
-These are not hard rules, they are a set of criteria to use to evaluate options available when a decision needs to be made. Each rule should be considered to be prefaced with "all else being equal".
-Simplicity is preferable to complexity
 Architecture, designs, and implementations that are simple have useful properties:
-They are easy to understand
-They are easy to modify
-They are easy to replace or rewrite
+  They are easy to understand
+  They are easy to modify
+  They are easy to replace or rewrite
+
 Existing solutions are preferable to entirely new ones
-Use of mature existing solutions has benefits over creating new solutions:
-It generally takes less time to go from concept to production with an existing solution
-Existing solutions tend to be of higher quality than new solutions, at least for a period of time
-Third-party solutions tend to improve their features and quality over time without internal effort
-Existing solutions generally have better documentation and
+  Use of mature existing solutions has benefits over creating new solutions:
+    It generally takes less time to go from concept to production with an existing solutions
+    Existing solutions tend to be of higher quality than new solutions, at least for a period of time
+    Third-party solutions tend to improve their features and quality over time without internal effort
+    Existing solutions generally have better documentation and
+
 However, there are downsides that must be considered:
-It is generally harder to modify third-party solutions
-Existing solutions may not be simple, or may not serve the requirements effectively.
-Open Source solutions are preferable to proprietary ones
-For locally deployed code, open source solutions offer some benefits over proprietary ones.
-Code availability is often very useful to debug and write integration against
-Proprietary software licensing can inhibit the goals of elastic scaling, by requiring monitoring and/or restriction of application use on multiple, temporary, instances
-For externally managed services, this is less of a concern.
-Iterative improvements are preferable to large-scale changes
-Smaller changes are easier to understand, plan, execute, and evaluate the impact of.
-Components of the architecture should not require particular hardware or operating systems
-Keep the amount of state required by a component to a minimum
+  It is generally harder to modify third-party solutions
+  Existing solutions may not be simple, or may not serve the requirements effectively.
+  Open Source solutions are preferable to proprietary ones
+
 Avoid single points of failure
-Where possible, work should be able to be performed by multiple instances of an application that are active at the same time. Ensuring that only a single instance of an application is running on a cluster is a hard problem, but it also assures a lack of scalability as well.
-Favor redundant distribution of resources over restoring from backups
-Keeping recent backups of 12TB of data on a daily basis is a hard exercise. Instead of having single instances of data as part of a large group of data that needs to be backed up entirely whether pieces have changed or not, a redundant distribution of resources obviates the need for backing up that data, and focusing backup tasks on only the groups of data that have changed is much more effective for both backing up, but also for the recovery process.
 ---
 # architecture changelog 
 Yola Platform 2.9 — August 2009: Adds Resource Store instances to the publishing environment.
@@ -444,15 +440,17 @@ A flat organisational structure and hiring smart people means that you don’t r
 Github pull requests and code review have transformed the way the team works.
 Many eyeballs make all the bugs shallower and there’s always a paper trail.
 ---
-yola open source
-
-demands
-hashcache
-property-cachingd
+# yola open source
 
 https://github.com/yola
----
 
+https://github.com/yola/demands
+
+https://github.com/yola/property-caching
+
+https://github.com/yola/auth_tkt
+
+https://github.com/yola/hashcache
 ---
 # roadmap
 
@@ -468,23 +466,20 @@ https://github.com/yola
 ---
 template: inverse
 .left-column[
-  ## Roadmap
-  ### Monitoring
+  # Roadmap: Monitoring
 ]
-.right-column[
-![monitoring]()
+.large[
+monitoring
 ]
 ???
-    - monitoring: we use pingdom, graphite, munin and sentry
-    - stuff mainly just goes in there (unless there’s a problem. for the size of cluster we operate, these tools are generally sufficient)
-        - we need a monitoring dashboard (next juicy devops project)
-
+- monitoring: we use pingdom, graphite, munin and sentry
+  - stuff mainly just goes in there (unless there’s a problem. for the size of cluster we operate, these tools are generally sufficient)
+  - we need a monitoring dashboard (next juicy devops project)
 ---
 # roadmap: what was hard
 .left-column[
   ## Roadmap: What was hard
 ]
-
 - slow
 
 - boring
